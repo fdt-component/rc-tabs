@@ -1,0 +1,32 @@
+ul, li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+}
+li {
+  line-height: 50px;
+  font-size: 20px;
+  text-align: center;
+}
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+h1 {
+  text-align: center;
+  font-weight: 300;
+  line-height: 80px;
+  margin: 0 0 30px;
+  background: #66CCFF;
+  color: #fff;
+}
+li {
+  width: 90%;
+  margin: 10px auto;
+  font-weight: 300;
+  border-radius: 10px;
+  background: #CCFFFF;
+}
+a {
+  display: block;
+  width: 100%;
+}

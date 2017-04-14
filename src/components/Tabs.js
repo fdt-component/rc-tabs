@@ -1,61 +1,70 @@
 import React from 'react';
 import Tappable from 'react-tappable';
-import defaultStyles from './tab.css';
+import defaultStyles from './rctabs.css';
 
 class Tabs extends React.Component {
   constructor(props) {
     super(props);
-    const {tabStaticStyle, tabActiveStyle, tabHeight, styles} = this.props;
     this.state = {
       activeKey: this.initDefautActive(),
     };
-    this.style = {
-      styles,
-      tabStaticStyle,
-      tabActiveStyle,
-      tabHeight: {
-        lineHeight: tabHeight
-      },
-      contentHeight: {
-        height: `calc(100% - ${tabHeight})`
+    this.styles = this.initStyle();
+  }
+
+  initStyle() {
+    const {mergeStyles} = this.props;
+    const styles = defaultStyles;
+    if(!!mergeStyles) {
+      for(const prop in styles) {
+        if(mergeStyles[prop]) {
+          styles[prop] += ` ${mergeStyles[prop]}`;
+        }
       }
-    };
+    }
+    return styles;
   }
 
   initDefautActive() {
-    const {children, defaultActiveKey = null} = this.props;
-    return !defaultActiveKey ? children[0].key: defaultActiveKey;
+    const {defaultActiveKey = null} = this.props;
+    return !defaultActiveKey ? 0 : defaultActiveKey;
   }
 
-  onTabClick(activeKey) {
+  onTabClick(curIdx) {
     const self = this;
-    if(this.state.activeKey !== activeKey) {
+    if(this.state.activeKey !== curIdx) {
       this.setState({
-        activeKey,
+        activeKey: curIdx,
       },() => {
-        self.props.onchange && self.props.onchange(activeKey);
+        self.props.onchange && self.props.onchange(curIdx);
       });
     }
   }
 
-  getTabStyle(activeKey) {
-    const {tabActiveStyle, tabStaticStyle} = this.style;
-    if(activeKey === this.state.activeKey) {
-      return tabActiveStyle;
+  getTabCname(curidx) {
+    const {item, active} = this.styles;
+    if(curidx === this.state.activeKey) {
+      return `${item} ${active}`;
     } else {
-      return tabStaticStyle;
+      return `${item}`;
+    }
+  }
+
+  getPanelCname(curIdx) {
+    const {panel, active} = this.styles;
+    if(curIdx === this.state.activeKey) {
+      return `${panel} ${active}`;
+    } else {
+      return `${panel}`;
     }
   }
 
   renderTabList() {
     const {children} = this.props;
-    const {styles} = this.style;
     const tablist = React.Children.map(children, (ele, idx) => (
       <Tappable
-        className={styles.item}
+        className={this.getTabCname(idx)}
         key={idx}
-        onTap={this.onTabClick.bind(this,ele.key)}
-        style={this.getTabStyle(ele.key)}
+        onTap={this.onTabClick.bind(this, idx)}
       >{ele.props.name}
       </Tappable>
     ));
@@ -64,12 +73,9 @@ class Tabs extends React.Component {
 
   renderTabPanel() {
     const {children} = this.props;
-    const {activeKey} = this.state;
-    const {styles} = this.style;
-    const tabpanel = React.Children.map(children, ele => {
+    const tabpanel = React.Children.map(children, (ele,idx) => {
       const eleProps = {
-        styles,
-        isActive: ele.key === activeKey
+        cn: this.getPanelCname(idx)
       };
       return (ele && React.cloneElement(ele, eleProps));
     });
@@ -79,43 +85,25 @@ class Tabs extends React.Component {
   render() {
     const tablist = this.renderTabList();
     const tabpanel = this.renderTabPanel();
-    const {styles, tabHeight, contentHeight} = this.style;
+    const styles = this.styles;
     return (
       <div className={styles.tab}>
-        <div
-          className={styles['tab-list']}
-          style={tabHeight}
-        >{tablist}</div>
-        <div
-          className={styles['tab-content']}
-          style={contentHeight}
-        >{tabpanel}</div>
+        <div className={styles['tab-list']}>
+          {tablist}
+        </div>
+        <div className={styles['tab-panels']}>
+          {tabpanel}
+        </div>
       </div>
     );
   }
 }
 
-Tabs.defaultProps = {
-  styles: defaultStyles,
-  tabHeight: '45px',
-  tabStaticStyle: {
-    color: '#333',
-    borderBottom: '1px solid #333'
-  },
-  tabActiveStyle: {
-    color: 'red',
-    borderBottom: '3px solid red'
-  }
-};
-
 Tabs.propTypes = {
   children: React.PropTypes.node,
-  defaultActiveKey: React.PropTypes.string,
+  defaultActiveKey: React.PropTypes.number,
   onchange: React.PropTypes.func,
-  tabHeight: React.PropTypes.string,
-  tabStaticStyle: React.PropTypes.object,
-  tabActiveStyle: React.PropTypes.object,
-  styles: React.PropTypes.object
+  mergeStyles: React.PropTypes.object
 };
 
 module.exports = Tabs;

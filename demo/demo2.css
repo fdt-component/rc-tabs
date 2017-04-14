@@ -1,0 +1,20 @@
+.tab-list {
+  line-height: 80px;
+}
+
+.tab-list .item {
+  color: pink;
+  border-bottom: none;
+  background: gray;
+}
+
+.tab-list .item.active {
+  color: orange;
+  border-bottom: none;
+  background: #66CCFF;
+}
+
+.tab-panels {
+  width: 100%;
+  height: calc(100% - 80px);
+}

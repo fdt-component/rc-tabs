@@ -2,8 +2,7 @@ import React from 'react';
 
 class TabPanel extends React.Component {
   render() {
-    const {isActive = false, styles, children} = this.props;
-    const cn = isActive ? `${styles.item} ${styles.active}` : `${styles.item}`;
+    const {cn, children} = this.props;
     return (
       <div className={cn}>
         {children}
@@ -13,8 +12,7 @@ class TabPanel extends React.Component {
 }
 
 TabPanel.propTypes = {
-  isActive: React.PropTypes.bool,
   children: React.PropTypes.node,
-  styles: React.PropTypes.object
+  cn: React.PropTypes.string
 };
 module.exports = TabPanel;
