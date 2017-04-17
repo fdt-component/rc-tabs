@@ -36,7 +36,6 @@ import {Tabs, TabPanel} from 'ygq-rc-tabs'
 </Tabs>
 ```    
 
-
 ## API
 
 ### Tabs
@@ -58,4 +57,4 @@ import {Tabs, TabPanel} from 'ygq-rc-tabs'
 | ~~key(废弃)~~ | 标签的key | string | yes | 无 |
 
 ## example
-https://fdt-component.github.io/rc-tabs/
+https://fdt-component.github.io/rc-tabs/docs/index.html
