@@ -10,8 +10,7 @@ const config = {
   },
   output: {
     path: path.resolve(__dirname, 'docs'),
-    filename: '[name].js',
-    publicPath: '/'
+    filename: '[name].js'
   },
   externals: {
     react:'React',
