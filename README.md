@@ -36,17 +36,30 @@ import {Tabs, TabPanel} from 'ygq-rc-tabs'
 </Tabs>
 ```    
 
+## webpack.config.js 需要添加如下loader
+> 如果不是全局使用css-modules
+需要在其余loader中屏蔽`tabs.css`文件
+
+```
+{
+  test: /(tabs)\.css/,
+  loader: [
+    'style-loader',
+    'css-loader?modules&localIdentName=[name]__[local]__[hash:base64:5]',
+    'postcss-loader'
+  ],
+}
+```
+
+
 ## API
 
 ### Tabs
 
 | Properties | Descrition | Type | isRequired | Default |
 | --- | --- | --- | --- | --- |
-| defaultActiveKey | 初始化时展示的标签页 | string | no | 第一个TabPanel |
-| onchange| 切换标签页的回调 | func | no | 无 |
-| ~~tabHeight(废弃)~~| 标签的高度 | string | no | "45px" |
-| ~~tabStaticStyle(废弃)~~| 标签未选中的样式 | object | no | {color: '#333',borderBottom: '1px solid #333'} |
-| ~~tabActiveStyle(废弃)~~| 标签选中的样式 | object | no | {color: 'red',borderBottom: '3px solid red'} |
+| defaultActiveKey | 初始化时展示的标签页 | string/number | yes | 0 |
+| onchange| 切换标签页的回调(回调参数为当前TabPanel的key值) | func | no | 无 |
 | mergeStyle| 样式覆盖 | object | no | 无 |
 
 ### TabPanel
@@ -54,7 +67,7 @@ import {Tabs, TabPanel} from 'ygq-rc-tabs'
 | Properties | Descrition | Type | isRequired | Default |
 | --- | --- | --- | --- | --- |
 | name | 标签的名字或展示内容 | string/node | yes | 无 |
-| ~~key(废弃)~~ | 标签的key | string | yes | 无 |
+| key | 标签的key | string/number | no | number(0,1,2...) |
 
 ## example
 https://fdt-component.github.io/rc-tabs/docs/index.html

@@ -1,14 +1,12 @@
-.tab-list {
-  line-height: 80px;
-}
 
-.tab-list .item {
+.item {
+  line-height: 80px;
   color: pink;
   border-bottom: none;
   background: gray;
 }
 
-.tab-list .item.active {
+.item.active {
   color: orange;
   border-bottom: none;
   background: #66CCFF;
