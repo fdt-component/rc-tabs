@@ -11,10 +11,10 @@ class Demo1 extends React.Component {
   render() {
     return (
       <Tabs
-        defaultActiveKey="SC"
+        defaultActiveKey={1}
         onchange={this.handleChange}
       >
-        <TabPanel key="SC" name="选项卡1">
+        <TabPanel name="选项卡1">
           选项卡1内容
         </TabPanel>
         <TabPanel name="选项卡2">
