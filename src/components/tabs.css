@@ -14,20 +14,23 @@
   position: relative;
   user-select: none;
   overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .tab-list {
   width: 100%;
-  display: flex;
   text-align: center;
   line-height: 45px;
+
+  display: flex;
 }
 
 .item {
-  flex: 1;
   color: #666;
   border-bottom: 1px solid #e9e9e9;
-  transition: color .1s;
+  flex: 1;
 }
 
 .item.active {
@@ -36,18 +39,29 @@
 }
 
 .tab-panels {
+  position: relative;
   width: 100%;
-  height: calc(100% - 45px);
+  flex: 1;
+  overflow: hidden;
 }
 
 .panel {
   width: 100%;
   height: 100%;
   overflow: auto;
-  display: none;
+  -webkit-overflow-scrolling: touch;
 }
 
-.panel.active {
+.slide .panel {
+  position: relative;
+  display: inline-block;
+  float: left;
+}
+
+.fade .panel {
+  display: none;
+}
+.fade .panel.active {
   display: block;
   animation: fadeIn .8s;
 }

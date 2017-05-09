@@ -22,13 +22,15 @@ class Tabs extends React.Component {
   }
 
   render() {
-    const {children,onchange,defaultActiveKey} = this.props;
+    const {children,onchange,defaultActiveKey, ...others} = this.props;
     return (
       <TabsBasic
         defaultActiveKey={defaultActiveKey}
         onchange={onchange}
         styles={this.styles}
-      >{children}
+        {...others}
+      >
+        {children}
       </TabsBasic>
     );
   }

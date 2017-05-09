@@ -13,9 +13,68 @@ class Demo1 extends React.Component {
       <Tabs
         defaultActiveKey={1}
         onchange={this.handleChange}
+        mode="slide"
       >
         <TabPanel name="选项卡1">
-          选项卡1内容
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
+          <div>选项卡1内容</div>
         </TabPanel>
         <TabPanel name="选项卡2">
           选项卡2内容

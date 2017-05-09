@@ -1,6 +1,7 @@
 import React from 'react';
 import Tappable from 'react-tappable';
 import cn from 'classnames/bind';
+import ReactSwipe from 'react-swipe';
 
 class TabsBasic extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class TabsBasic extends React.Component {
       activeKey: defaultActiveKey
     };
     this.cx = cn.bind(styles);
+    this.onTabClick.bind(this);
   }
 
   onTabClick(curIdx) {
@@ -19,6 +21,7 @@ class TabsBasic extends React.Component {
         activeKey: curIdx,
       },() => {
         self.props.onchange && self.props.onchange(curIdx);
+        if (this.swipe) this.swipe.slide(curIdx);
       });
     }
   }
@@ -30,16 +33,18 @@ class TabsBasic extends React.Component {
       <Tappable
         className={this.cx('item', {active: activeKey === idx})}
         onTap={this.onTabClick.bind(this, idx)}
-      >{ele.props.name}
+      >
+        {ele.props.name}
       </Tappable>
     ));
     return tablist;
   }
 
   renderTabPanel() {
-    const {children} = this.props;
+    const {children, mode} = this.props;
     const {activeKey} = this.state;
-    const tabpanel = React.Children.map(children, (ele,idx) => {
+    const pannelStyle = {};
+    const tabpanel = React.Children.map(children, (ele, idx) => {
       const eleProps = {
         cn: this.cx('panel', {active: activeKey === idx})
       };
@@ -51,24 +56,51 @@ class TabsBasic extends React.Component {
   render() {
     const tablist = this.renderTabList();
     const tabpanel = this.renderTabPanel();
+    const {mode, children, defaultActiveKey} = this.props;
     return (
-      <div className={this.cx('tab')}>
+      <div className={this.cx('tab', {fade: mode === 'mode', slide: mode === 'slide'})}>
         <div className={this.cx('tab-list')}>
           {tablist}
         </div>
         <div className={this.cx('tab-panels')}>
-          {tabpanel}
+          {
+            mode === 'slide' ? (
+              <ReactSwipe
+                ref={swipe => (this.swipe = swipe)}
+                style={{
+                  container: {
+                    height: '100%'
+                  },
+                  wrapper: {
+                    height: '100%'
+                  },
+                }}
+                swipeOptions={{
+                  continuous: false,
+                  startSlide: defaultActiveKey,
+                  transitionEnd: this.onTabClick,
+                }}
+              >
+                {tabpanel}
+              </ReactSwipe>
+            ) : tabpanel
+          }
         </div>
       </div>
     );
   }
 }
 
+TabsBasic.defaultProps = {
+  mode: 'fade',
+}
+
 TabsBasic.propTypes = {
   children: React.PropTypes.node,
   defaultActiveKey: React.PropTypes.number,
   onchange: React.PropTypes.func,
-  styles: React.PropTypes.object
+  styles: React.PropTypes.object,
+  mode: React.PropTypes.oneOf(['fade', 'slide']),
 };
 
 module.exports = TabsBasic;

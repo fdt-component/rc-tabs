@@ -50,6 +50,7 @@
     "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
-    "html-webpack-plugin": "^2.28.0"
+    "html-webpack-plugin": "^2.28.0",
+    "react-swipe": "^5.0.8"
   }
 }
