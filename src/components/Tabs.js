@@ -36,10 +36,7 @@ class Tabs extends React.Component {
 
 Tabs.propTypes = {
   children: React.PropTypes.node,
-  defaultActiveKey: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number
-  ]),
+  defaultActiveKey: React.PropTypes.number,
   onchange: React.PropTypes.func,
   mergeStyles: React.PropTypes.object
 };

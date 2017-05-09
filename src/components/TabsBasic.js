@@ -26,17 +26,13 @@ class TabsBasic extends React.Component {
   renderTabList() {
     const {children} = this.props;
     const {activeKey} = this.state;
-    const tablist = React.Children.map(children, (ele, idx) => {
-      const key = ele.key || idx;
-      return (
-        <Tappable
-          className={this.cx('item', {active: activeKey === key})}
-          key={key}
-          onTap={this.onTabClick.bind(this, key)}
-        >{ele.props.name}
-        </Tappable>
-      );
-    });
+    const tablist = React.Children.map(children, (ele, idx) => (
+      <Tappable
+        className={this.cx('item', {active: activeKey === idx})}
+        onTap={this.onTabClick.bind(this, idx)}
+      >{ele.props.name}
+      </Tappable>
+    ));
     return tablist;
   }
 
@@ -44,10 +40,8 @@ class TabsBasic extends React.Component {
     const {children} = this.props;
     const {activeKey} = this.state;
     const tabpanel = React.Children.map(children, (ele,idx) => {
-      const key = ele.key || idx;
       const eleProps = {
-        key,
-        cn: this.cx('panel', {active: activeKey === key})
+        cn: this.cx('panel', {active: activeKey === idx})
       };
       return (ele && React.cloneElement(ele, eleProps));
     });
@@ -72,10 +66,7 @@ class TabsBasic extends React.Component {
 
 TabsBasic.propTypes = {
   children: React.PropTypes.node,
-  defaultActiveKey: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number
-  ]),
+  defaultActiveKey: React.PropTypes.number,
   onchange: React.PropTypes.func,
   styles: React.PropTypes.object
 };

@@ -58,7 +58,7 @@ import {Tabs, TabPanel} from 'ygq-rc-tabs'
 
 | Properties | Descrition | Type | isRequired | Default |
 | --- | --- | --- | --- | --- |
-| defaultActiveKey | 初始化时展示的标签页 | string/number | yes | 0 |
+| defaultActiveKey | 初始化时展示的标签页 | number | no | 0 |
 | onchange| 切换标签页的回调(回调参数为当前TabPanel的key值) | func | no | 无 |
 | mergeStyle| 样式覆盖 | object | no | 无 |
 
@@ -67,7 +67,6 @@ import {Tabs, TabPanel} from 'ygq-rc-tabs'
 | Properties | Descrition | Type | isRequired | Default |
 | --- | --- | --- | --- | --- |
 | name | 标签的名字或展示内容 | string/node | yes | 无 |
-| key | 标签的key | string/number | no | number(0,1,2...) |
 
 ## example
 https://fdt-component.github.io/rc-tabs/docs/index.html
