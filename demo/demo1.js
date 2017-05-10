@@ -4,16 +4,12 @@ import {Tabs, TabPanel} from '../src/index.js';
 
 class Demo1 extends React.Component {
 
-  handleChange(key) {
-    console.log('点击',key+1, '选项卡');
-  }
-
   render() {
     return (
       <Tabs
-        defaultActiveKey={1}
-        onchange={this.handleChange}
+        activeKey={1}
         mode="slide"
+        direction="down"
       >
         <TabPanel name="选项卡1">
           <div>选项卡1内容</div>

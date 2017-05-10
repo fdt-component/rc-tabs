@@ -2,27 +2,36 @@ import React from 'react';
 import Tappable from 'react-tappable';
 import cn from 'classnames/bind';
 import ReactSwipe from 'react-swipe';
+import Cursor from './Cursor';
 
 class TabsBasic extends React.Component {
   constructor(props) {
     super(props);
-    const {styles, defaultActiveKey = 0} = this.props;
+    const {styles, activeKey} = this.props;
     this.state = {
-      activeKey: defaultActiveKey
+      activeKey,
     };
     this.cx = cn.bind(styles);
-    this.onTabClick.bind(this);
   }
-
-  onTabClick(curIdx) {
-    const self = this;
-    if(this.state.activeKey !== curIdx) {
-      this.setState({
-        activeKey: curIdx,
-      },() => {
-        self.props.onchange && self.props.onchange(curIdx);
-        if (this.swipe) this.swipe.slide(curIdx);
-      });
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.activeKey !== this.props.activeKey) {
+      this.setState({activeKey: nextProps.activeKey});
+    }
+  }
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.activeKey !== this.state.activeKey && this.swipe) {
+      this.swipe.slide(nextState.activeKey);
+    }
+  }
+  onTabClick = (activeKey) => {
+    if(this.state.activeKey !== activeKey) {
+      if (this.props.onchange) {
+        this.props.onchange(activeKey);
+      } else {
+        this.setState({
+          activeKey,
+        });
+      }
     }
   }
 
@@ -56,11 +65,13 @@ class TabsBasic extends React.Component {
   render() {
     const tablist = this.renderTabList();
     const tabpanel = this.renderTabPanel();
-    const {mode, children, defaultActiveKey} = this.props;
+    const {activeKey} = this.state;
+    const {mode, children, direction} = this.props;
     return (
-      <div className={this.cx('tab', {fade: mode === 'mode', slide: mode === 'slide'})}>
+      <div className={this.cx('tab', {fade: mode === 'mode', slide: mode === 'slide', down: direction === 'down'})}>
         <div className={this.cx('tab-list')}>
           {tablist}
+          <Cursor className={this.cx('cursor')} index={activeKey} len={children.length} />
         </div>
         <div className={this.cx('tab-panels')}>
           {
@@ -77,7 +88,7 @@ class TabsBasic extends React.Component {
                 }}
                 swipeOptions={{
                   continuous: false,
-                  startSlide: defaultActiveKey,
+                  startSlide: activeKey,
                   transitionEnd: this.onTabClick,
                 }}
               >
@@ -93,6 +104,7 @@ class TabsBasic extends React.Component {
 
 TabsBasic.defaultProps = {
   mode: 'fade',
+  direction: 'up',
 }
 
 TabsBasic.propTypes = {
@@ -101,6 +113,7 @@ TabsBasic.propTypes = {
   onchange: React.PropTypes.func,
   styles: React.PropTypes.object,
   mode: React.PropTypes.oneOf(['fade', 'slide']),
+  direction: React.PropTypes.oneOf(['up', 'down']),
 };
 
 module.exports = TabsBasic;

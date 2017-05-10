@@ -20,9 +20,7 @@ gulp.task('css', () => {
 
 gulp.task('js', () =>
   gulp.src('./src/**/*.js')
-    .pipe(babel({
-      presets: ['es2015']
-    }))
+    .pipe(babel())
     .pipe(gulp.dest('lib/'))
 );
 

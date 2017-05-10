@@ -22,11 +22,9 @@ class Tabs extends React.Component {
   }
 
   render() {
-    const {children,onchange,defaultActiveKey, ...others} = this.props;
+    const {children, ...others} = this.props;
     return (
       <TabsBasic
-        defaultActiveKey={defaultActiveKey}
-        onchange={onchange}
         styles={this.styles}
         {...others}
       >
@@ -38,8 +36,6 @@ class Tabs extends React.Component {
 
 Tabs.propTypes = {
   children: React.PropTypes.node,
-  defaultActiveKey: React.PropTypes.number,
-  onchange: React.PropTypes.func,
   mergeStyles: React.PropTypes.object
 };
 

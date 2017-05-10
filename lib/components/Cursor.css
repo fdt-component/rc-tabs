@@ -1,0 +1,14 @@
+.cursorWrap {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transition: -webkit-transform 300ms ease-out;
+  transition: transform 300ms ease-out;
+  transition: transform 300ms ease-out, -webkit-transform 300ms ease-out;
+}
+
+.cursor {
+  width: 100%;
+  height: 2px;
+  background-color: #4A86EA;
+}
