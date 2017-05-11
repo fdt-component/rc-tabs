@@ -22,9 +22,9 @@ import {Tabs, TabPanel} from 'ygq-rc-tabs'
 
 ```
 <Tabs
-  defaultActiveKey={0}
+  activeKey={0}
   mergeStyles={styles}
-  onchange={this.handleChange}
+  onChange={this.handleChange}
 >
   <TabPanel name="选项卡1">
     选项卡1内容
@@ -60,7 +60,7 @@ import {Tabs, TabPanel} from 'ygq-rc-tabs'
 | --- | --- | --- | --- | --- |
 | activeKey | 初始化时展示的标签页 | number | no | 0 |
 | mode | 切换动画 | oneOf(['fade', 'slide']) | no | fade |
-| onchange| 切换标签页的回调(回调参数为当前TabPanel的key值) | func | no | 无 |
+| onChange| 切换标签页的回调(回调参数为当前TabPanel的key值) | func | no | 无 |
 | mergeStyle| 样式覆盖 | object(tab, tab-list, item, active, tab-panels, panel, cursor) | no | 无 |
 
 ### TabPanel
