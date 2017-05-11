@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './Cursor.css';
 import cn from 'classnames';
+import PropTypes from 'prop-types';
 
-class Cursor extends React.Component {
+class Cursor extends React.PureComponent {
   render() {
     let {len, index, className, ...others} = this.props;
     len = Math.max(1, len);
@@ -15,9 +16,9 @@ class Cursor extends React.Component {
 }
 
 Cursor.propTypes = {
-  className: React.PropTypes.string.isRequired,
-  len: React.PropTypes.number.isRequired,
-  index: React.PropTypes.number.isRequired,
+  className: PropTypes.string.isRequired,
+  len: PropTypes.number.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 module.exports = Cursor;

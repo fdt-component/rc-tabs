@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-class TabPanel extends React.Component {
+class TabPanel extends React.PureComponent {
   render() {
     const {cn, children} = this.props;
     return (
@@ -12,8 +13,8 @@ class TabPanel extends React.Component {
 }
 
 TabPanel.propTypes = {
-  children: React.PropTypes.node,
-  cn: React.PropTypes.string
+  children: PropTypes.node,
+  cn: PropTypes.string
 };
 
 module.exports = TabPanel;

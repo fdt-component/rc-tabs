@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Tappable from 'react-tappable';
 import cn from 'classnames/bind';
 import ReactSwipe from 'react-swipe';
 import Cursor from './Cursor';
 import defaultStyles from './tabs.css';
 
-class TabsBasic extends React.Component {
+class Tabs extends React.Component {
   constructor(props) {
     super(props);
     const {mergeStyles, activeKey} = this.props;
@@ -109,18 +110,18 @@ class TabsBasic extends React.Component {
   }
 }
 
-TabsBasic.defaultProps = {
+Tabs.defaultProps = {
   mode: 'fade',
   direction: 'up',
 }
 
-TabsBasic.propTypes = {
-  children: React.PropTypes.node,
-  defaultActiveKey: React.PropTypes.number,
-  onChange: React.PropTypes.func,
-  mergeStyles: React.PropTypes.object,
-  mode: React.PropTypes.oneOf(['fade', 'slide']),
-  direction: React.PropTypes.oneOf(['up', 'down']),
+Tabs.propTypes = {
+  children: PropTypes.node,
+  defaultActiveKey: PropTypes.number,
+  onChange: PropTypes.func,
+  mergeStyles: PropTypes.object,
+  mode: PropTypes.oneOf(['fade', 'slide']),
+  direction: PropTypes.oneOf(['up', 'down']),
 };
 
-module.exports = TabsBasic;
+module.exports = Tabs;
