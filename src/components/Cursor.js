@@ -7,8 +7,12 @@ class Cursor extends React.PureComponent {
   render() {
     let {len, index, className, ...others} = this.props;
     len = Math.max(1, len);
+    const transform = `translateX(${index * 100}%)`
     return (
-      <div className={styles.cursorWrap} style={{width: `${100 / len}%`, transform: `translateX(${index * 100}%)`}}>
+      <div
+        className={styles.cursorWrap}
+        style={{width: `${100 / len}%`, transform, WebkitTransform: transform }}
+      >
         <div className={cn(styles.cursor, className)} {...others}></div>
       </div>
     );
