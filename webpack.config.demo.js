@@ -1,27 +1,24 @@
 'use strict';
 const path = require('path');
 const webpack = require('webpack');
-const webpackUMDExternal = require('webpack-umd-external');
 
 const production = process.env.NODE_ENV === 'production';
 
 module.exports = {
   entry: {
-    index: [
-      './src/index.js'
+    vendor: [
+      './demo/src/index.js'
     ]
   },
   output: {
-    path: path.join(__dirname, 'lib'),
+    path: path.join(__dirname, 'demo'),
     filename: '[name].js',
-    libraryTarget: 'umd'
+    publicPath: '/demo/'
   },
-  externals:webpackUMDExternal({
+  externals:{
     react: 'React',
     'react-dom': 'ReactDOM',
-    'prop-types': 'PropTypes',
-    'react-css-modules': 'cssModules'
-  }),
+  },
   resolve: {
     modules: ['node_modules', './src'],
   },

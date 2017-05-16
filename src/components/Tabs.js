@@ -4,7 +4,7 @@ import Tappable from 'react-tappable';
 import cn from 'classnames/bind';
 import ReactSwipe from 'react-swipe';
 import Cursor from './Cursor';
-import defaultStyles from './tabs.css';
+import defaultStyles from './tabs.less';
 
 class Tabs extends React.Component {
   constructor(props) {
@@ -15,16 +15,19 @@ class Tabs extends React.Component {
     };
     this.cx = cn.bind(this.initStyle(defaultStyles, mergeStyles));
   }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.activeKey !== this.props.activeKey) {
       this.setState({activeKey: nextProps.activeKey});
     }
   }
+
   componentWillUpdate(nextProps, nextState) {
     if (nextState.activeKey !== this.state.activeKey && this.swipe) {
       this.swipe.slide(nextState.activeKey);
     }
   }
+
   initStyle(styles, mergeStyles) {
     if(!!mergeStyles) {
       for(const prop in styles) {
@@ -35,7 +38,8 @@ class Tabs extends React.Component {
     }
     return styles;
   }
-  onTabClick = (activeKey) => {
+
+  onTabClick = activeKey => {
     if(this.state.activeKey !== activeKey) {
       if (this.props.onChange) {
         this.props.onChange(activeKey);
@@ -46,6 +50,7 @@ class Tabs extends React.Component {
       }
     }
   }
+
   renderTabList() {
     const {children} = this.props;
     const {activeKey} = this.state;
@@ -76,7 +81,11 @@ class Tabs extends React.Component {
     const {activeKey} = this.state;
     const {mode, children, direction} = this.props;
     return (
-      <div className={this.cx('tab', {fade: mode === 'mode', slide: mode === 'slide', down: direction === 'down'})}>
+      <div
+        className={this.cx('tab', mode, {
+          down: direction === 'down'
+        })}
+      >
         <div className={this.cx('tab-list')}>
           {tablist}
           <Cursor className={this.cx('cursor')} index={activeKey} len={children.length} />
@@ -113,15 +122,15 @@ class Tabs extends React.Component {
 Tabs.defaultProps = {
   mode: 'fade',
   direction: 'up',
-}
-
-Tabs.propTypes = {
-  children: PropTypes.node,
-  defaultActiveKey: PropTypes.number,
-  onChange: PropTypes.func,
-  mergeStyles: PropTypes.object,
-  mode: PropTypes.oneOf(['fade', 'slide']),
-  direction: PropTypes.oneOf(['up', 'down']),
 };
 
-module.exports = Tabs;
+Tabs.propTypes = {
+  activeKey: PropTypes.number,
+  children: PropTypes.node,
+  direction: PropTypes.oneOf(['up', 'down']),
+  mergeStyles: PropTypes.object,
+  mode: PropTypes.oneOf(['fade', 'slide']),
+  onChange: PropTypes.func,
+};
+
+export default  Tabs;

@@ -17,4 +17,4 @@ TabPanel.propTypes = {
   cn: PropTypes.string
 };
 
-module.exports = TabPanel;
+export default TabPanel;
