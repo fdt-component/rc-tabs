@@ -4,10 +4,11 @@ import Component from './app.js';
 
 const rootEl = document.getElementById('j-app');
 
-if (module.hot) {
-  import('react-hot-loader').then(({AppContainer}) => {
-    const render = () => ReactDOM.render(<AppContainer><Component /></AppContainer>, rootEl);
-    render();
-    module.hot.accept('./app.js', render);
-  });
+
+const render = () => ReactDOM.render(<Component />,rootEl);
+
+render();
+
+if (process.env.NODE_ENV !== 'production' && module.hot) {
+  module.hot.accept('./app.js', render);
 }

@@ -529,20 +529,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var rootEl = document.getElementById('j-app');
 
-if (false) {
-  import('react-hot-loader').then(function (_ref) {
-    var AppContainer = _ref.AppContainer;
+var render = function render() {
+  return __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__app_js__["a" /* default */], null), rootEl);
+};
 
-    var render = function render() {
-      return ReactDOM.render(React.createElement(
-        AppContainer,
-        null,
-        React.createElement(Component, null)
-      ), rootEl);
-    };
-    render();
-    module.hot.accept('./app.js', render);
-  });
+render();
+
+if (false) {
+  module.hot.accept('./app.js', render);
 }
 
 /***/ }),
@@ -584,7 +578,7 @@ var Component = function (_React$Component) {
   return Component;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
-/* unused harmony default export */ var _unused_webpack_default_export = (Component);
+/* harmony default export */ __webpack_exports__["a"] = (Component);
 
 /***/ }),
 /* 8 */

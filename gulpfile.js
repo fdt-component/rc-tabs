@@ -73,7 +73,7 @@ gulp.task('dev', cb => {
   });
   app.listen(80, err => {
     if (err) return console.log(err);
-    console.log('Page is running at: http://localhost/demo/index.html');
+    console.log('Page is running at: http://localhost/docs/index.html');
     cb();
   });
 });
