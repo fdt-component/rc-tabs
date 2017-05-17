@@ -7,13 +7,13 @@ const production = process.env.NODE_ENV === 'production';
 module.exports = {
   entry: {
     vendor: [
-      './demo/src/index.js'
+      './docs/src/index.js'
     ]
   },
   output: {
-    path: path.join(__dirname, 'demo'),
+    path: path.join(__dirname, 'docs'),
     filename: '[name].js',
-    publicPath: '/demo/'
+    publicPath: '/docs/'
   },
   externals:{
     react: 'React',

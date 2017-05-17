@@ -44,9 +44,9 @@ gulp.task('build', ['clean'],() => {
 
 gulp.task('demo', () => {
   demoConfig.devtool = 'source-map';
-  return gulp.src('./demo/**/*.js')
+  return gulp.src('./docs/**/*.js')
     .pipe(gulpWebpack(demoConfig, webpack))
-    .pipe(gulp.dest('demo'));
+    .pipe(gulp.dest('docs'));
 });
 
 gulp.task('dev', cb => {
@@ -68,8 +68,8 @@ gulp.task('dev', cb => {
   }));
   app.use(require('webpack-hot-middleware')(compiler));
   app.use(express.static(__dirname));
-  app.get('/demo/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'demo', 'index.html'));
+  app.get('/docs/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'docs', 'index.html'));
   });
   app.listen(80, err => {
     if (err) return console.log(err);
