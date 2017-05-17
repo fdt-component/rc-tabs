@@ -1,12 +1,7 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import {Tabs, TabPanel} from '../src/index.js';
-import styles from './demo2.css';
+import {Tabs, TabPanel} from '../../src/index.js';
+import styles from './demo2.less';
 class Demo2 extends React.Component {
-  handleChange(idx) {
-    console.log('点击',idx, '选项卡');
-  }
-
   renderPanel1() {
     const style = {
       textAlign: 'center',
@@ -35,9 +30,8 @@ class Demo2 extends React.Component {
     const panel1 = this.renderPanel1();
     return (
       <Tabs
-        defaultActiveKey={0}
+        activeKey={0}
         mergeStyles={styles}
-        onchange={this.handleChange}
       >
         <TabPanel name={name1}>
           {panel1}
@@ -50,7 +44,4 @@ class Demo2 extends React.Component {
     );
   }
 }
-
-ReactDom.render((
-  <Demo2/>
-), document.getElementById('j-app'));
+export default Demo2;

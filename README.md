@@ -20,20 +20,45 @@ import {Tabs, TabPanel} from 'ygq-rc-tabs'
 
 ## 使用
 
-```
-<Tabs
-  activeKey={0}
-  mergeStyles={styles}
-  onChange={this.handleChange}
->
-  <TabPanel name="选项卡1">
-    选项卡1内容
-  </TabPanel>
+``` jsx
+import React from 'react';
+import {Tabs, TabPanel} from '../../src/index.js';
 
-  <TabPanel name="选项卡2">
-    选项卡2内容
-  </TabPanel>
-</Tabs>
+class Demo1 extends React.Component {
+
+  state = {
+    activeKey: 0
+  }
+  
+  onChange = idx => {
+    this.setState({
+      activeKey: idx
+    });
+  }
+
+  render() {
+    return (
+      <Tabs
+        activeKey={this.state.activeKey}
+        direction="down"
+        mode="fade"
+        onChange={this.onChange}
+      >
+        <TabPanel name="选项卡1">
+          <div>选项卡1内容</div>
+        </TabPanel>
+        <TabPanel name="选项卡2">
+          选项卡2内容
+        </TabPanel>
+        <TabPanel name="选项卡3">
+          选项卡3内容
+        </TabPanel>
+      </Tabs>
+    );
+  }
+}
+
+export default Demo1;
 ```    
 
 ## webpack.config.js 需要添加如下loader
@@ -60,7 +85,9 @@ import {Tabs, TabPanel} from 'ygq-rc-tabs'
 | --- | --- | --- | --- | --- |
 | activeKey | 初始化时展示的标签页 | number | no | 0 |
 | mode | 切换动画 | oneOf(['fade', 'slide']) | no | fade |
-| onChange| 切换标签页的回调(回调参数为当前TabPanel的key值) | func | no | 无 |
+| onChange | 切换标签页的回调(回调参数为当前TabPanel的key值) | func | no | 无 |
+| clean | 是否清除默认样式 | bool | no | false |
+| direction | 标签页位置 | oneOf(['up', 'down']) | no | up |
 | mergeStyle| 样式覆盖 | object(tab, tab-list, item, active, tab-panels, panel, cursor) | no | 无 |
 
 ### TabPanel

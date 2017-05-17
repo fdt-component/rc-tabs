@@ -29,10 +29,15 @@ class Tabs extends React.Component {
   }
 
   initStyle(styles, mergeStyles) {
+    const {clean} = this.props;
     if(!!mergeStyles) {
-      for(const prop in styles) {
-        if(mergeStyles[prop]) {
-          styles[prop] += ` ${mergeStyles[prop]}`;
+      if(clean) {
+        return mergeStyles;
+      } else {
+        for(const prop in mergeStyles) {
+          if(mergeStyles[prop]) {
+            styles[prop] += ` ${mergeStyles[prop]}`;
+          }
         }
       }
     }
@@ -82,9 +87,7 @@ class Tabs extends React.Component {
     const {mode, children, direction} = this.props;
     return (
       <div
-        className={this.cx('tab', mode, {
-          down: direction === 'down'
-        })}
+        className={this.cx('tab', mode, direction)}
       >
         <div className={this.cx('tab-list')}>
           {tablist}
@@ -122,11 +125,13 @@ class Tabs extends React.Component {
 Tabs.defaultProps = {
   mode: 'fade',
   direction: 'up',
+  clean: false
 };
 
 Tabs.propTypes = {
   activeKey: PropTypes.number,
   children: PropTypes.node,
+  clean: PropTypes.bool,
   direction: PropTypes.oneOf(['up', 'down']),
   mergeStyles: PropTypes.object,
   mode: PropTypes.oneOf(['fade', 'slide']),

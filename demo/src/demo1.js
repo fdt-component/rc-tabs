@@ -3,12 +3,24 @@ import {Tabs, TabPanel} from '../../src/index.js';
 
 class Demo1 extends React.Component {
 
+  state = {
+    activeKey: 0
+  }
+
+  onChange = idx => {
+    this.setState({
+      activeKey: idx
+    });
+  }
+
   render() {
     return (
       <Tabs
-        activeKey={1}
+        activeKey={this.state.activeKey}
+        clean
         direction="down"
-        mode="slide"
+        mode="fade"
+        onChange={this.onChange}
       >
         <TabPanel name="选项卡1">
           <div>选项卡1内容</div>
