@@ -10,7 +10,7 @@ const execSync = require('child_process').execSync;
 const path = require('path');
 
 gulp.task('clean', [], cb => {
-  del(['dist']).then(() => cb());
+  del(['lib']).then(() => cb());
 });
 
 gulp.task('checkVersion', cb => {
@@ -39,7 +39,7 @@ gulp.task('build', ['clean'],() => {
   wpConfig.devtool = 'source-map';
   return gulp.src('./src/**/*.js')
     .pipe(gulpWebpack(wpConfig, webpack))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('lib'));
 });
 
 gulp.task('demo', () => {
