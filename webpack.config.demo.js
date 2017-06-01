@@ -27,11 +27,11 @@ module.exports = {
       test: /\.js/,
       loader: 'eslint-loader',
       enforce: 'pre',
-      exclude: /(node_modules|dist)/
+      exclude: /(node_modules|lib)/
     }, {
       test: /\.js/,
       loader: 'babel-loader',
-      exclude: /(node_modules|dist)/
+      exclude: /(node_modules|lib)/
     }, {
       test: /\.less$/,
       use: [{

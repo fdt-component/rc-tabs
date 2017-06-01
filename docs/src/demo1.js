@@ -1,5 +1,6 @@
 import React from 'react';
-import {Tabs, TabPanel} from '../../src/index.js';
+import {Tabs, TabPanel} from '../../lib/index.js';
+// import {Tabs, TabPanel} from '../../src/index.js';
 
 class Demo1 extends React.Component {
 
@@ -17,7 +18,6 @@ class Demo1 extends React.Component {
     return (
       <Tabs
         activeKey={this.state.activeKey}
-        clean
         direction="down"
         mode="fade"
         onChange={this.onChange}

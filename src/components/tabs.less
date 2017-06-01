@@ -16,9 +16,9 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-
 }
-.tab.down {
+
+.down {
   flex-direction: column-reverse;
 }
 
@@ -29,9 +29,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
 }
 
 .item {
+  display: block;
+  line-height: 40px;
   color: #666;
   flex: 1;
 }
@@ -43,6 +46,7 @@
 .tab-panels {
   position: relative;
   width: 100%;
+  height: 100%;
   flex: 1;
   overflow: hidden;
 }
@@ -50,8 +54,6 @@
 .panel {
   width: 100%;
   height: 100%;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 .slide .panel {
@@ -66,4 +68,18 @@
 .fade .panel.active {
   display: block;
   animation: fadeIn .8s;
+}
+
+.cursorWrap {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transition: transform 300ms ease-out;
+}
+
+.cursor {
+  width: 100%;
+  height: 2px;
+  margin: auto;
+  background-color: #4A86EA;
 }

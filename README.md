@@ -20,7 +20,7 @@ import {Tabs, TabPanel} from 'ygq-rc-tabs'
 
 ## 使用
 
-``` jsx
+``` javascript
 import React from 'react';
 import {Tabs, TabPanel} from '../../src/index.js';
 
@@ -29,7 +29,7 @@ class Demo1 extends React.Component {
   state = {
     activeKey: 0
   }
-  
+
   onChange = idx => {
     this.setState({
       activeKey: idx
@@ -59,23 +59,7 @@ class Demo1 extends React.Component {
 }
 
 export default Demo1;
-```    
-
-## webpack.config.js 需要添加如下loader
-> 如果不是全局使用css-modules
-需要在其余loader中屏蔽`tabs.css`文件
-
 ```
-{
-  test: /(tabs)\.css/,
-  loader: [
-    'style-loader',
-    'css-loader?modules&localIdentName=[name]__[local]__[hash:base64:5]',
-    'postcss-loader'
-  ],
-}
-```
-
 
 ## API
 

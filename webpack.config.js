@@ -20,7 +20,10 @@ module.exports = {
     react: 'React',
     'react-dom': 'ReactDOM',
     'prop-types': 'PropTypes',
-    'react-css-modules': 'cssModules'
+    'react-tappable': 'Tappable',
+    'react-swipe': 'ReactSwipe',
+    classnames: 'classnames',
+    'prop-types': 'PropTypes',
   }),
   resolve: {
     modules: ['node_modules', './src'],
