@@ -29,7 +29,7 @@ class Tabs extends React.Component {
     }
   }
 
-  initStyle(styles, mergeStyles) {
+  initStyle = (styles, mergeStyles) => {
     const {clean} = this.props;
     if(!!mergeStyles) {
       if(clean) {
@@ -75,7 +75,7 @@ class Tabs extends React.Component {
     const {activeKey} = this.state;
     return React.Children.map(children, (ele, idx) => {
       const eleProps = {
-        cn: this.cn('panel', {active: activeKey === idx})
+        isActive: activeKey === idx
       };
       return (ele && React.cloneElement(ele, eleProps));
     });

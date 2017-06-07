@@ -1,6 +1,6 @@
 import React from 'react';
-import {Tabs, TabPanel} from '../../lib/index.js';
-// import {Tabs, TabPanel} from '../../src/index.js';
+// import {Tabs, TabPanel} from '../../lib/index.js';
+import {Tabs, TabPanel} from '../../src/index.js';
 
 class Demo1 extends React.Component {
 
@@ -19,7 +19,7 @@ class Demo1 extends React.Component {
       <Tabs
         activeKey={this.state.activeKey}
         direction="down"
-        mode="fade"
+        mode="slide"
         onChange={this.onChange}
       >
         <TabPanel name="选项卡1">

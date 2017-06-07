@@ -4,11 +4,11 @@
   "description": "react-tabs components",
   "main": "lib/index.js",
   "scripts": {
-     "dev": "sudo NODE_ENV=development gulp dev",
-     "build": "NODE_ENV=production gulp build",
-     "demo": "NODE_ENV=production gulp demo",
-     "debug": "sudo NODE_ENV=debugremote gulp dev"
-   },
+    "dev": "sudo NODE_ENV=development gulp dev",
+    "build": "NODE_ENV=production gulp build",
+    "demo": "NODE_ENV=production gulp demo",
+    "debug": "sudo NODE_ENV=debugremote gulp dev"
+  },
   "keywords": [
     "ygq",
     "react",

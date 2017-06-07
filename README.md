@@ -79,6 +79,7 @@ export default Demo1;
 | Properties | Descrition | Type | isRequired | Default |
 | --- | --- | --- | --- | --- |
 | name | 标签的名字或展示内容 | string/node | yes | 无 |
+| canScroll | 是否支持滚动 | bool | no | yes |
 
 ## example
 https://fdt-component.github.io/rc-tabs/docs/index.html
