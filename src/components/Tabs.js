@@ -2,121 +2,42 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Tappable from 'react-tappable';
 import classnames from 'classnames/bind';
-import ReactSwipe from 'react-swipe';
-import Cursor from './Cursor';
 import defaultStyles from './tabs.less';
+import mergeSty from '../helper/index';
 
-class Tabs extends React.Component {
+class Tabs extends React.PureComponent {
   constructor(props) {
     super(props);
-    const {mergeStyles, activeKey=0} = this.props;
-    this.state = {
-      activeKey,
-    };
-    this.styles = this.initStyle(defaultStyles, mergeStyles);
+    const {clean, mergeStyles} = this.props;
+    this.styles = clean ? mergeStyles : mergeSty(defaultStyles, mergeStyles);
     this.cn = classnames.bind(this.styles);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.activeKey !== this.props.activeKey) {
-      this.setState({activeKey: nextProps.activeKey});
-    }
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.activeKey !== this.state.activeKey && this.swipe) {
-      this.swipe.slide(nextState.activeKey);
-    }
-  }
-
-  initStyle = (styles, mergeStyles) => {
-    const {clean} = this.props;
-    if(!!mergeStyles) {
-      if(clean) {
-        return mergeStyles;
-      } else {
-        for(const prop in mergeStyles) {
-          if(mergeStyles[prop]) {
-            styles[prop] += ` ${mergeStyles[prop]}`;
-          }
-        }
-      }
-    }
-    return styles;
-  }
-
   onTabClick = activeKey => {
-    if(this.state.activeKey !== activeKey) {
-      if (this.props.onChange) {
-        this.props.onChange(activeKey);
-      } else {
-        this.setState({
-          activeKey,
-        });
-      }
-    }
-  }
-
-  renderTabList() {
-    const {children} = this.props;
-    const {activeKey} = this.state;
-    return React.Children.map(children, (ele, idx) => (
-      <Tappable
-        className={this.cn('item', {active: activeKey === idx})}
-        onTap={this.onTabClick.bind(this, idx)}
-      >
-        {ele.props.name}
-      </Tappable>
-    ));
-  }
-
-  renderTabPanel() {
-    const {children} = this.props;
-    const {activeKey} = this.state;
-    return React.Children.map(children, (ele, idx) => {
-      const eleProps = {
-        isActive: activeKey === idx
-      };
-      return (ele && React.cloneElement(ele, eleProps));
-    });
+    this.props.activeKey !== activeKey && this.props.onChange(activeKey);
   }
 
   render() {
-    const tablist = this.renderTabList();
-    const tabpanel = this.renderTabPanel();
-    const {activeKey} = this.state;
-    const {mode, children, direction} = this.props;
+    const {activeKey, items} = this.props;
+    const transform = `translateX(${activeKey * 100}%)`;
     return (
-      <div
-        className={this.cn('tab', mode, direction)}
-      >
-        <div className={this.cn('tab-list')}>
-          {tablist}
-          <Cursor activeKey={activeKey} len={children.length} styles={this.styles}/>
-        </div>
-        <div className={this.cn('tab-panels')}>
-          {
-            mode === 'slide' ? (
-              <ReactSwipe
-                ref={swipe => (this.swipe = swipe)}
-                style={{
-                  container: {
-                    height: '100%'
-                  },
-                  wrapper: {
-                    height: '100%'
-                  },
-                }}
-                swipeOptions={{
-                  continuous: false,
-                  startSlide: activeKey,
-                  transitionEnd: this.onTabClick,
-                }}
-              >
-                {tabpanel}
-              </ReactSwipe>
-            ) : tabpanel
-          }
+      <div className={this.cn('tabs')}>
+        {
+          items.map((item, idx) => (
+            <Tappable
+              className={this.cn('tab', {active: activeKey === idx})}
+              key={idx}
+              onTap={this.onTabClick.bind(this, idx)}
+            >
+              {item}
+            </Tappable>
+          ))
+        }
+        <div
+          className={this.cn('cursor-wrap')}
+          style={{width: `${100 / items.length}%`, transform, WebkitTransform: transform}}
+        >
+          <div className={this.cn('cursor')}></div>
         </div>
       </div>
     );
@@ -124,19 +45,16 @@ class Tabs extends React.Component {
 }
 
 Tabs.defaultProps = {
-  mode: 'fade',
-  direction: 'up',
+  activeKey: 0,
   clean: false
 };
 
 Tabs.propTypes = {
-  activeKey: PropTypes.number,
-  children: PropTypes.node,
+  activeKey: PropTypes.number.isRequired,
   clean: PropTypes.bool,
-  direction: PropTypes.oneOf(['up', 'down']),
+  items: PropTypes.array.isRequired,
   mergeStyles: PropTypes.object,
-  mode: PropTypes.oneOf(['fade', 'slide']),
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
 };
 
-export default  Tabs;
+export default Tabs;

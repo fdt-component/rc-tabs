@@ -1,3 +1,5 @@
 import Tabs from './components/Tabs';
-import TabPanel from './components/TabPanel';
-export {Tabs, TabPanel};
+import Panels from './components/Panels';
+import Panel from './components/Panel';
+
+export {Tabs, Panels, Panel};

@@ -2,7 +2,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const webpackUMDExternal = require('webpack-umd-external');
-
+const DashboardPlugin = require('webpack-dashboard/plugin');
 const production = process.env.NODE_ENV === 'production';
 
 module.exports = {
@@ -24,6 +24,7 @@ module.exports = {
     'react-swipe': 'ReactSwipe',
     classnames: 'classnames',
     'prop-types': 'PropTypes',
+    'rc-sticky': 'Sticky'
   }),
   resolve: {
     modules: ['node_modules', './src'],
@@ -68,5 +69,6 @@ module.exports = {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
     }),
+    new DashboardPlugin()
   ]
 };
