@@ -24,6 +24,7 @@ class Demo1 extends React.Component {
         />
         <Panels
           activeKey={this.state.activeKey}
+          mergeStyles={styles}
           showAll={false}
         >
           <Panel className="123">

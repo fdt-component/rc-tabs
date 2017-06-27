@@ -1,6 +1,6 @@
 {
   "name": "ygq-rc-tabs",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "react-tabs components",
   "main": "lib/index.js",
   "scripts": {
@@ -64,11 +64,11 @@
     "request": "~2.69.0",
     "style-loader": "^0.16.1",
     "webpack": "^2.4.1",
+    "webpack-dashboard": "^0.4.0",
     "webpack-dev-middleware": "^1.10.1",
     "webpack-hot-middleware": "^2.18.0",
     "webpack-stream": "^3.2.0",
-    "webpack-umd-external": "^1.0.2",
-    "webpack-dashboard": "^0.4.0"
+    "webpack-umd-external": "^1.0.2"
   },
   "dependencies": {
     "prop-types": "^15.5.9",

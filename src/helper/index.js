@@ -1,7 +1,7 @@
-export default (styles, mergeStyles) => {
-  // if(!styles) return null;
+export default (defaultStyles, mergeStyles) => {
+  const {...styles} = defaultStyles;
   if(!mergeStyles) return styles;
-  for(const i in styles) {
+  for(const i in defaultStyles) {
     if(mergeStyles[i]) {
       styles[i] += ` ${mergeStyles[i]}`;
     }
