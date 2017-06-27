@@ -1,6 +1,6 @@
 {
   "name": "ygq-rc-tabs",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "react-tabs components",
   "main": "lib/index.js",
   "scripts": {
@@ -49,8 +49,6 @@
     "eslint": "^3.10.2",
     "eslint-loader": "^1.7.1",
     "eslint-plugin-react": "^4.1.0",
-    "exports-loader": "^0.6.4",
-    "expose-loader": "^0.7.3",
     "express": "^4.15.2",
     "file-loader": "^0.11.1",
     "gulp": "^3.9.1",
@@ -65,21 +63,17 @@
     "react-test-renderer": "^15.6.1",
     "request": "~2.69.0",
     "style-loader": "^0.16.1",
-    "url-loader": "~0.5.7",
-    "url-parse": "^1.0.5",
     "webpack": "^2.4.1",
     "webpack-dev-middleware": "^1.10.1",
     "webpack-hot-middleware": "^2.18.0",
     "webpack-stream": "^3.2.0",
-    "webpack-umd-external": "^1.0.2"
+    "webpack-umd-external": "^1.0.2",
+    "webpack-dashboard": "^0.4.0"
   },
   "dependencies": {
     "prop-types": "^15.5.9",
-    "rc-sticky": "^1.0.3",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-swipe": "^5.0.8",
-    "react-tappable": "^1.0.0",
-    "webpack-dashboard": "^0.4.0"
+    "react-tappable": "0.8.4"
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Tappable from 'react-tappable';
+import Tappable from 'react-tappable/lib/Tappable';
 import classnames from 'classnames/bind';
 import defaultStyles from './tabs.less';
 import mergeSty from '../helper/index';

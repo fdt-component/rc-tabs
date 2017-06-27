@@ -5122,7 +5122,7 @@ react-swipe@^5.0.8:
     prop-types "^15.5.7"
     swipe-js-iso "^2.0.3"
 
-react-tappable@^0.8.4:
+react-tappable@0.8.4:
   version "0.8.4"
   resolved "https://registry.yarnpkg.com/react-tappable/-/react-tappable-0.8.4.tgz#c3670cf0c4eb71b2764deb749a3adac1d628af78"
 
