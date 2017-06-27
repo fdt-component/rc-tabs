@@ -4,7 +4,7 @@ import classnames from 'classnames/bind';
 import defaultStyles from './tabs.less';
 import mergeSty from '../helper/index.js';
 
-class Panels extends React.PureComponent {
+class Panels extends React.Component {
   constructor(props) {
     super(props);
     const {clean, mergeStyles} = this.props;
@@ -15,7 +15,7 @@ class Panels extends React.PureComponent {
   render() {
     const {activeKey, children, showAll} = this.props;
     return (
-      <div className={this.cn('panels', 'slide')}>
+      <div className={this.cn('panels')}>
         {
           React.Children.map(children, (ele, idx) => {
             const isActive = activeKey === idx;

@@ -1,6 +1,6 @@
 {
   "name": "ygq-rc-tabs",
-  "version": "2.2.2",
+  "version": "2.2.4",
   "description": "react-tabs components",
   "main": "lib/index.js",
   "scripts": {
