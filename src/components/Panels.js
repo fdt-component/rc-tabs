@@ -4,7 +4,7 @@ import classnames from 'classnames/bind';
 import defaultStyles from './tabs.less';
 import mergeSty from '../helper/index.js';
 
-class Panels extends React.Component {
+class Panels extends React.PureComponent {
   constructor(props) {
     super(props);
     const {clean, mergeStyles} = this.props;
@@ -17,23 +17,17 @@ class Panels extends React.Component {
     return (
       <div className={this.cn('panels')}>
         {
-          React.Children.map(children, (ele, idx) => {
-            const isActive = activeKey === idx;
-            if(showAll) {
-              return (
-                <div className={this.cn('panel', {active: isActive})}>
-                  {ele}
-                </div>
-              );
-            } else {
-              return activeKey === idx ? (
-                <div className={this.cn('panel', {active: isActive})}>
-                  {ele}
-                </div>
-              ) : null;
-            }
-          })
+          showAll ? React.Children.map(children, (ele, idx) => (
+            <div className={this.cn('panel', {active: activeKey === idx})}>
+              {ele && React.cloneElement(ele)}
+            </div>
+          )) : (
+            <div className={this.cn('panel', 'active')}>
+              {children[activeKey] && React.cloneElement(children[activeKey])}
+            </div>
+          )
         }
+        <input/>
       </div>
     );
   }

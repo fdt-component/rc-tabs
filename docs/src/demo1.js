@@ -1,39 +1,31 @@
 import React from 'react';
-// import {Tabs, TabPanel} from '../../lib/index.js';
-import {Tabs, TabPanel} from '../../src/index.js';
+import {Nav, Panels} from '../../src/index.js';
 
 class Demo1 extends React.Component {
 
-  state = {
-    activeKey: 0
-  }
-
-  onChange = idx => {
-    this.setState({
-      activeKey: idx
-    });
-  }
-
+  state = {activeKey: 0}
+  onChange = activeKey => this.setState({activeKey});
   render() {
+    const {activeKey} = this.state;
     return (
       <div>
-        <Tabs
-          activeKey={this.state.activeKey}
-          direction="up"
-          mode="fade"
+        <Nav
+          activeKey={activeKey}
+          items={['选项卡1', '选项卡2', '选项卡3']}
           onChange={this.onChange}
           sticky={false}
+        />
+        <Panels
+          activeKey={activeKey}
         >
-          <TabPanel name="选项卡1">
-            <div style={{lineHeight: 100}}>选项卡1内容</div>
-          </TabPanel>
-          <TabPanel name="选项卡2">
+          <div style={{lineHeight: 100}}>选项卡1内容</div>
+          <div>
             选项卡2内容
-          </TabPanel>
-          <TabPanel name="选项卡3">
+          </div>
+          <div>
             选项卡3内容
-          </TabPanel>
-        </Tabs>
+          </div>
+        </Panels>
       </div>
     );
   }

@@ -5,7 +5,7 @@ import classnames from 'classnames/bind';
 import defaultStyles from './tabs.less';
 import mergeSty from '../helper/index';
 
-class Tabs extends React.PureComponent {
+class Nav extends React.PureComponent {
   constructor(props) {
     super(props);
     const {clean, mergeStyles} = this.props;
@@ -13,19 +13,17 @@ class Tabs extends React.PureComponent {
     this.cn = classnames.bind(this.styles);
   }
 
-  onTabClick = activeKey => {
-    this.props.activeKey !== activeKey && this.props.onChange(activeKey);
-  }
+  onTabClick = activeKey => this.props.onChange && this.props.onChange(activeKey);
 
   render() {
-    const {activeKey, items} = this.props;
+    const {activeKey, items, noCursor} = this.props;
     const transform = `translateX(${activeKey * 100}%)`;
     return (
-      <div className={this.cn('tabs')}>
+      <div className={this.cn('nav-wrap')}>
         {
           items.map((item, idx) => (
             <Tappable
-              className={this.cn('tab', {active: activeKey === idx})}
+              className={this.cn('nav', {active: activeKey === idx})}
               key={idx}
               onTap={this.onTabClick.bind(this, idx)}
             >
@@ -33,28 +31,34 @@ class Tabs extends React.PureComponent {
             </Tappable>
           ))
         }
-        <div
-          className={this.cn('cursor-wrap')}
-          style={{width: `${100 / items.length}%`, transform, WebkitTransform: transform}}
-        >
-          <div className={this.cn('cursor')}></div>
-        </div>
+        {
+          noCursor ? null : (
+            <div
+              className={this.cn('cursor-wrap')}
+              style={{width: `${100 / items.length}%`, transform, WebkitTransform: transform}}
+            >
+              <div className={this.cn('cursor')}></div>
+            </div>
+          )
+        }
       </div>
     );
   }
 }
 
-Tabs.defaultProps = {
+Nav.defaultProps = {
   activeKey: 0,
-  clean: false
+  clean: false,
+  cursor: false
 };
 
-Tabs.propTypes = {
+Nav.propTypes = {
   activeKey: PropTypes.number.isRequired,
   clean: PropTypes.bool,
   items: PropTypes.array.isRequired,
   mergeStyles: PropTypes.object,
+  noCursor: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
 };
 
-export default Tabs;
+export default Nav;

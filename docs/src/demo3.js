@@ -1,5 +1,5 @@
 import React from 'react';
-import {Tabs, Panels, Panel} from '../../src/index.js';
+import {Nav, Panels} from '../../src/index.js';
 import styles from './demo3.less';
 class Demo1 extends React.Component {
   state = {
@@ -16,9 +16,9 @@ class Demo1 extends React.Component {
   render() {
     return (
       <div>
-        <Tabs
+        <Nav
           activeKey={this.state.activeKey}
-          items={['1',this.renderItem()]}
+          items={['标签栏1','标签栏2']}
           mergeStyles={styles}
           onChange={this.onChange}
         />
@@ -27,18 +27,18 @@ class Demo1 extends React.Component {
           mergeStyles={styles}
           showAll={false}
         >
-          <Panel className="123">
+          <div className="123">
             <p>1111111111</p>
             <p>1111111111</p>
             <p>1111111111</p>
             <p>1111111111</p>
-          </Panel>
-          <Panel>
+          </div>
+          <div>
             <p>222222222</p>
             <p>222222222</p>
             <p>222222222</p>
             <p>222222222</p>
-          </Panel>
+          </div>
         </Panels>
       </div>
     );
