@@ -27,7 +27,6 @@ class Panels extends React.PureComponent {
             </div>
           )
         }
-        <input/>
       </div>
     );
   }
